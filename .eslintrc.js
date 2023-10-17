@@ -6,12 +6,18 @@ module.exports = {
     'node': true,
     'cypress/globals': true
   },
-  'extends': 'eslint:recommended',
+  'extends': [
+    'eslint:recommended',
+    'plugin:react/recommended'
+  ],
   'overrides': [
   ],
   'parserOptions': {
     'ecmaVersion': 'latest'
   },
+  'plugins': [
+    'react', 'jest', 'cypress'
+  ],
   'rules': {
     'indent': [
       'error',
@@ -38,5 +44,10 @@ module.exports = {
       'error', { 'before': true, 'after': true }
     ],
     'no-console': 0
+  },
+  'settings': {
+    'react': {
+      'version': 'detect' // Automatically picks the version you have installed.
+    }
   }
 }
