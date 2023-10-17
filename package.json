@@ -1,8 +1,7 @@
 {
-  "engines": { 
-    "node": "16.20.2" 
+  "engines": {
+    "node": "16.20.2"
   },
-
   "name": "notebackend",
   "version": "0.0.1",
   "description": "",
@@ -15,10 +14,11 @@
     "deploy": "flyctl deploy",
     "deploy:full": "npm run build:ui && npm run deploy",
     "logs:prod": "flyctl logs",
-    "lint": "eslint .",
+    "eslint": "eslint .",
     "cypress:open": "cypress open",
     "start:test": "NODE_ENV=test node index.js",
-    "test:e2e": "cypress run"
+    "test:e2e": "cypress run",
+    "lint": "eslint . --fix"
   },
   "author": "Juho",
   "license": "MIT",
@@ -27,12 +27,15 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.7.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "cypress": "^13.3.1",
     "eslint": "^8.27.0",
     "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-jest": "^27.4.2",
+    "eslint-plugin-react": "^7.33.2",
     "nodemon": "^2.0.20"
   }
 }
