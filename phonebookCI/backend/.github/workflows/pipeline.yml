@@ -1,0 +1,76 @@
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+jobs:
+    simple_deployment_pipeline:
+      runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-node@v3
+          with:
+            node-version: '16'
+        - name: Install dependencies 
+          run: npm install  
+        - name: Check style
+          run: npm run eslint
+        - name: build
+          run: npm run build
+        - name: test
+          run: npm run test
+        - name: e2e tests
+          uses: cypress-io/github-action@v5
+          with:
+            command: npm run test:e2e
+            start: npm run start-prod
+            wait-on: http://localhost:3001
+
+        - name: commits
+          env:
+             COMMITS: ${{ toJson(github.event.commits) }}
+          run: echo "$COMMITS"
+
+        - name: Deployment success
+          uses: rjstone/discord-webhook-notify@v1
+          if: success()
+          with:
+              severity: info
+              details: Deployment onnistui
+              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        - name: Deployment failure
+          uses: rjstone/discord-webhook-notify@v1
+          if: failure()
+          with:
+              severity: error
+              details: Deployment epäonnistui
+              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        - name: Deployment cancelled
+          uses: rjstone/discord-webhook-notify@v1
+          if: cancelled()
+          with:
+              severity: warn
+              details: Deployment peruttu
+              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
+    tag_release:
+      needs: [simple_deployment_pipeline]
+      runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v3
+        - name: Bump version and push tag
+          uses: anothrNick/github-tag-action@1.64.0
+          if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')  }}
+          
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            DEFAULT_BUMP: patch
+            RELEASE_BRANCHES: master
+            INITIAL_VERSION: 0.1.1
+            WITH_V: true
+        

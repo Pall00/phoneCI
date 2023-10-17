@@ -1,0 +1,38 @@
+{
+  "engines": { 
+    "node": "16.20.2" 
+  },
+
+  "name": "notebackend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "build:ui": "rm -rf build && cd ../puhelinluettelo && npm run build && cp -r build ../backend",
+    "deploy": "flyctl deploy",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "flyctl logs",
+    "lint": "eslint .",
+    "cypress:open": "cypress open",
+    "start:test": "NODE_ENV=test node index.js",
+    "test:e2e": "cypress run"
+  },
+  "author": "Juho",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "cypress": "^13.3.1",
+    "eslint": "^8.27.0",
+    "eslint-plugin-cypress": "^2.15.1",
+    "nodemon": "^2.0.20"
+  }
+}
