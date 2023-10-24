@@ -21,7 +21,7 @@ jobs:
         - name: Check style
           run: npm run eslint
         - name: Build
-          run: npm build
+          run: npm run build
 
         - name: deploy
           run: npm run deploy
