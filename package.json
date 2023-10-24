@@ -10,7 +10,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \\\"Error: no test specified\\\" && exit 1",
-    "build:ui": "rm -rf build && cd ../puhelinluettelo && npm run build && cp -r build ../backend",
+    "build:ui": "rm -rf build && cd ./frontend/ && npm install && npm run build && cp -r build ../build",
     "deploy": "flyctl deploy",
     "deploy:full": "npm run build:ui && npm run deploy",
     "logs:prod": "flyctl logs",
@@ -19,7 +19,8 @@
     "start:test": "NODE_ENV=test node index.js",
     "test:e2e": "cypress run",
     "lint": "eslint . --fix",
-    "build": "rm -rf build && cd frontend && npm install && npm run build && cp -r build ../build"
+    "build": "rm -rf build && cd ./frontend/ && npm install && npm run build && cp -r build ../build"
+    
   },
   "author": "Juho",
   "license": "MIT",
