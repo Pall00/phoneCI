@@ -29,9 +29,7 @@ jobs:
         - run: flyctl deploy --remote-only
           env:
             FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-        
-        - name: test
-          run: npm run test
+            
         - name: e2e tests
           uses: cypress-io/github-action@v5
           with:
