@@ -20,7 +20,7 @@
     "test:e2e": "cypress run",
     "lint": "eslint . --fix",
     "build": "rm -rf build && cd ./frontend/ && npm install && npm run build && cp -r build ../build",
-    "start-prod": "node frontend/src/app.js"
+    "start-prod": "NODE_ENV=production node index.js"
   },
   "author": "Juho",
   "license": "MIT",
