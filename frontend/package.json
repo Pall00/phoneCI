@@ -22,7 +22,8 @@
     "deploy": "fly deploy",
     "deploy:full": "npm run build:ui && npm run deploy",
     "logs:prod": "fly logs",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "start-prod": "node app.js"
 
   },
   "proxy": "http://localhost:3001",
