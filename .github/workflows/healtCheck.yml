@@ -1,0 +1,22 @@
+      name: URL health check
+
+      on:
+        push:
+          branches:
+            - master
+      #  schedule:
+      #    - cron: '5 * * * *'
+      
+      jobs:
+        healthcheck:
+          runs-on: ubuntu-20.04
+          steps:
+            - name: Check the deployed service URL
+              uses: jtalk/url-health-check-action@v3
+              with:
+                # Check the following URLs one by one sequentially
+                url: https://phoneci.fly.dev/
+                max-attempts: 3 
+                retry-delay: 5s 
+               
+              
