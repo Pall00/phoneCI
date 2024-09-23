@@ -41,14 +41,22 @@ jobs:
           if: success()
           with:
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-              details: Deployment onnistui   
+              title: New deployment
+              message: Deployment onnistui   
+              include_image: false
+              avatar_url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+              username: GitHub PR Notifier
               
         - name: Deployment failure
           uses: stegzilla/discord-notify@v4
           if: failure()
           with:
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-              details: Deployment epäonnistui
+              title: New deployment
+              message: Deployment epäonnistui
+              include_image: false
+              avatar_url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+              username: GitHub PR Notifier
       
     tag_release:
       needs: [simple_deployment_pipeline]
