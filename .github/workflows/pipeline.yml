@@ -56,7 +56,7 @@ jobs:
           with:
               severity: warn
               details: Deployment peruttu
-              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }} 
 
     tag_release:
       needs: [simple_deployment_pipeline]
