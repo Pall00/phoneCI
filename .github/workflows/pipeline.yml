@@ -71,6 +71,5 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             DEFAULT_BUMP: patch
             RELEASE_BRANCHES: master
-            INITIAL_VERSION: 0.1.1
             WITH_V: true
         
