@@ -41,7 +41,7 @@ jobs:
           if: success()
           with:
               severity: info
-              details: Deployment onnistui
+              details: Deployment onnistui 
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
         - name: Deployment failure
           uses: rjstone/discord-webhook-notify@v1
