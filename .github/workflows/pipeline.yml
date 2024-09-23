@@ -37,27 +37,19 @@ jobs:
           run: echo "$COMMITS"
 
         - name: Deployment success
-          uses: stegzilla/discord-notify@v2
+          uses: stegzilla/discord-notify@v4
           if: success()
           with:
-              severity: info
-              details: Deployment onnistui 
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+              details: Deployment onnistui   
+              
         - name: Deployment failure
-          uses: stegzilla/discord-notify@v2
+          uses: stegzilla/discord-notify@v4
           if: failure()
           with:
-              severity: error
-              details: Deployment epäonnistui
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-        - name: Deployment cancelled
-          uses: stegzilla/discord-notify@v2
-          if: cancelled()
-          with:
-              severity: warn
-              details: Deployment peruttu
-              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }} 
-
+              details: Deployment epäonnistui
+      
     tag_release:
       needs: [simple_deployment_pipeline]
       runs-on: ubuntu-20.04
