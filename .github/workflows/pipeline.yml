@@ -40,7 +40,7 @@ jobs:
           uses: stegzilla/discord-notify@v4
           if: success()
           with:
-              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+              webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
               title: New deployment
               message: Deployment onnistui   
               include_image: false
@@ -51,7 +51,7 @@ jobs:
           uses: stegzilla/discord-notify@v4
           if: failure()
           with:
-              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+              webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
               title: New deployment
               message: Deployment epäonnistui
               include_image: false
