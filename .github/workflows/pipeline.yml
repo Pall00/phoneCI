@@ -37,21 +37,21 @@ jobs:
           run: echo "$COMMITS"
 
         - name: Deployment success
-          uses: rjstone/discord-webhook-notify@v1
+          uses: stegzilla/discord-notify@v2
           if: success()
           with:
               severity: info
               details: Deployment onnistui 
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
         - name: Deployment failure
-          uses: rjstone/discord-webhook-notify@v1
+          uses: stegzilla/discord-notify@v2
           if: failure()
           with:
               severity: error
               details: Deployment epäonnistui
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
         - name: Deployment cancelled
-          uses: rjstone/discord-webhook-notify@v1
+          uses: stegzilla/discord-notify@v2
           if: cancelled()
           with:
               severity: warn
