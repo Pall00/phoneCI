@@ -1,6 +1,6 @@
 # fly.toml file generated for jjuhobackend on 2022-11-06T15:39:02+02:00
 
-app = "jjuhobackend"
+app = "phoneci"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
